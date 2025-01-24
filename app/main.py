@@ -9,12 +9,12 @@ def format_linter_error(error: dict) -> dict:
 
 
 def format_single_linter_file(file_path: str, errors: list) -> dict:
-    status = "failed" if errors else "passed"
-    formatted_errors = [format_linter_error(error) for error in errors]
     return {
-        "errors": formatted_errors,
+        "errors": [
+            format_linter_error(error) for error in errors
+        ],
         "path": file_path,
-        "status": status
+        "status": "failed" if errors else "passed"
     }
 
 
